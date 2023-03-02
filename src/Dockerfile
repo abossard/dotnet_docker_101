@@ -10,12 +10,13 @@ FROM build-restore-env AS build-tests
 WORKDIR /src
 COPY tests/* tests/
 COPY api/* api/
-RUN dotnet test tests
+WORKDIR /src/tests
+RUN dotnet test
 
 FROM build-restore-env AS build-web
 WORKDIR /src
 COPY web/* web
-#RUN dotnet publish web -c Release -o /publish
+RUN dotnet publish web -c Release -o /publish
 
 FROM build-restore-env AS build-api
 WORKDIR /src
