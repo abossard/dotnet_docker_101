@@ -10,6 +10,7 @@ FROM build-restore-env AS build-tests
 WORKDIR /src
 COPY tests/* tests/
 COPY api/* api/
+COPY web/* web/
 WORKDIR /src/tests
 RUN dotnet test
 

@@ -1,11 +1,10 @@
-FROM debian AS base
+FROM nginx AS base
 LABEL maintainer="John Doe"
 WORKDIR /opt/www
 COPY upgrade.sh /tmp/
-RUN /tmp/upgrade.sh
 RUN sleep 10 && echo Hello World > index.html
 
-FROM debian AS base2
+FROM nginx AS base2
 WORKDIR /opt/www
 RUN sleep 10 && echo Hello World > index2.html
 
