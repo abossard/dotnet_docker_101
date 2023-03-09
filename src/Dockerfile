@@ -30,6 +30,12 @@ COPY --from=build-api /publish .
 EXPOSE 80
 ENTRYPOINT ["dotnet", "api.dll"]
 
+FROM scratch as runtime-api-compressed
+COPY --from=runtime-api / /
+EXPOSE 80
+ENTRYPOINT ["dotnet", "api.dll"]
+
+
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 as runtime-web
 WORKDIR /publish
 COPY --from=build-web /publish .
